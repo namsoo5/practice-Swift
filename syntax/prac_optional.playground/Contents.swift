@@ -20,3 +20,4 @@ if let actualNumber = Int(possibleNumber){   //optional binding
  print("not nil \(convertedNumber!)")  //강제로 옵셔널벗겼을때 닐값이면 죽어버림주의
  }
  */
+

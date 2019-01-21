@@ -22,3 +22,4 @@ print(emptyDictionary3["cheetah"]!)  //optional
 //immutable dictionary
 let emptyDictionary4 = ["ant":6, "snake":0, "cheetah":4]
 // error      emptyDictionary4["snake"] = 1
+

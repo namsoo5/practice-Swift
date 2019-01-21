@@ -25,7 +25,7 @@ for _ in 1...5{  //변수 굳이필요없을경우
     print("hi")
 }
 
-let minutes = 60
+let minutes = 5
 for count in 0..<minutes{
     print("count: \(count)")
 }

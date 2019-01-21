@@ -16,3 +16,4 @@ struct Student{
 var student1 = Student(name: "Park", age: 3, height: 100)
 
 print(student1.name, student1.age, student1.height)
+
