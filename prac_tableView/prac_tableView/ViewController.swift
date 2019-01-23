@@ -52,8 +52,17 @@ class ViewController: UIViewController, UITableViewDataSource {
         cell.detailTextLabel!.text = weatherStr
         
         if weatherStr == "맑음"{
-            cell.imageView!.image = UIImage(named: "<#T##String#>")
+            cell.imageView!.image = UIImage(named: "sunny.png")
+        }else if weatherStr == "흐림"{
+             cell.imageView!.image = UIImage(named: "cloud.png")
+        }else if weatherStr == "비"{
+            cell.imageView!.image = UIImage(named: "rain.png")
         }
+        else if weatherStr == "눈"{
+            cell.imageView!.image = UIImage(named: "snow.png")
+        }
+        
+        return cell
     }
     
 
