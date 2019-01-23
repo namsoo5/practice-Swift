@@ -43,9 +43,11 @@ class ViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         //withIdentifier 과 storyboard의 tableViewCell의 Identifier의 이름이 같도록 설정하기
+        //cell을 재사용함
+        //안보이는 cell은 큐에들어감
+        //이미생성된 cell은생성하지않지만 안보이는cell은 다시 재사용(재생성)되는 메커니즘
         
-        
-        var dicTemp = datalist[indexPath.row] //한줄한줄채우는작업
+        var dicTemp = datalist[indexPath.row] // 여기서부터 아래로는 한줄내용을 채우는작업
         cell.textLabel!.text = dicTemp["지역"]
         
         let weatherStr = dicTemp["날씨"]
