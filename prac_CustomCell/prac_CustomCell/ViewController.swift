@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource{
     
+    @IBOutlet weak var tableView: UITableView!
     var itemlist = [[String:String]]()  //딕셔너리배열
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +40,16 @@ class ViewController: UIViewController, UITableViewDataSource{
         let dicTemp = itemlist[indexPath.row]
        
         cell.nameLabel.text = dicTemp["name"]
-        cell.amountLabel.text = dicTemp["amount"]
+        cell.amountLabel.text = "\(dicTemp["amount"]!)개"
         cell.valueLabel.text = dicTemp["value"]
         cell.imgView.image = UIImage(named: dicTemp["image"]!)
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {  //넘어갈때 자동으로 호출되는 콜백메소드
+        if segue.identifier == "showDetail" {
+            (segue.destination as! DetailViewController).detaildata = itemlist[tableView.indexPathForSelectedRow!.row]//선택된 row의값 넘어감
+        }
     }
     
     
