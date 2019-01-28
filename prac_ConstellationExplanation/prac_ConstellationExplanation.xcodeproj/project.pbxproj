@@ -12,6 +12,18 @@
 		1B97297421FEBC5800F3D602 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B97297221FEBC5800F3D602 /* Main.storyboard */; };
 		1B97297621FEBC5900F3D602 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B97297521FEBC5900F3D602 /* Assets.xcassets */; };
 		1B97297921FEBC5900F3D602 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B97297721FEBC5900F3D602 /* LaunchScreen.storyboard */; };
+		1B97298D21FEBE5700F3D602 /* bearstar.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B97298121FEBE5600F3D602 /* bearstar.png */; };
+		1B97298E21FEBE5700F3D602 /* rabbitstar.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B97298221FEBE5600F3D602 /* rabbitstar.png */; };
+		1B97298F21FEBE5700F3D602 /* dogstar.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B97298321FEBE5600F3D602 /* dogstar.png */; };
+		1B97299021FEBE5700F3D602 /* bear.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B97298421FEBE5600F3D602 /* bear.png */; };
+		1B97299121FEBE5700F3D602 /* aurora.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1B97298521FEBE5600F3D602 /* aurora.jpeg */; };
+		1B97299221FEBE5700F3D602 /* eagle.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B97298621FEBE5600F3D602 /* eagle.png */; };
+		1B97299321FEBE5700F3D602 /* horse.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B97298721FEBE5600F3D602 /* horse.png */; };
+		1B97299421FEBE5700F3D602 /* eaglestar.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B97298821FEBE5600F3D602 /* eaglestar.png */; };
+		1B97299521FEBE5700F3D602 /* rabbit.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B97298921FEBE5600F3D602 /* rabbit.png */; };
+		1B97299621FEBE5700F3D602 /* constellation.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 1B97298A21FEBE5600F3D602 /* constellation.jpeg */; };
+		1B97299721FEBE5700F3D602 /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B97298B21FEBE5600F3D602 /* dog.png */; };
+		1B97299821FEBE5700F3D602 /* horsestar.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B97298C21FEBE5700F3D602 /* horsestar.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +34,18 @@
 		1B97297521FEBC5900F3D602 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B97297821FEBC5900F3D602 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B97297A21FEBC5900F3D602 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B97298121FEBE5600F3D602 /* bearstar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bearstar.png; sourceTree = "<group>"; };
+		1B97298221FEBE5600F3D602 /* rabbitstar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rabbitstar.png; sourceTree = "<group>"; };
+		1B97298321FEBE5600F3D602 /* dogstar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dogstar.png; sourceTree = "<group>"; };
+		1B97298421FEBE5600F3D602 /* bear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bear.png; sourceTree = "<group>"; };
+		1B97298521FEBE5600F3D602 /* aurora.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = aurora.jpeg; sourceTree = "<group>"; };
+		1B97298621FEBE5600F3D602 /* eagle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eagle.png; sourceTree = "<group>"; };
+		1B97298721FEBE5600F3D602 /* horse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horse.png; sourceTree = "<group>"; };
+		1B97298821FEBE5600F3D602 /* eaglestar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eaglestar.png; sourceTree = "<group>"; };
+		1B97298921FEBE5600F3D602 /* rabbit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rabbit.png; sourceTree = "<group>"; };
+		1B97298A21FEBE5600F3D602 /* constellation.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = constellation.jpeg; sourceTree = "<group>"; };
+		1B97298B21FEBE5600F3D602 /* dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dog.png; sourceTree = "<group>"; };
+		1B97298C21FEBE5700F3D602 /* horsestar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horsestar.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +78,7 @@
 		1B97296D21FEBC5800F3D602 /* prac_ConstellationExplanation */ = {
 			isa = PBXGroup;
 			children = (
+				1B97298021FEBE2A00F3D602 /* res */,
 				1B97296E21FEBC5800F3D602 /* AppDelegate.swift */,
 				1B97297021FEBC5800F3D602 /* ViewController.swift */,
 				1B97297221FEBC5800F3D602 /* Main.storyboard */,
@@ -62,6 +87,25 @@
 				1B97297A21FEBC5900F3D602 /* Info.plist */,
 			);
 			path = prac_ConstellationExplanation;
+			sourceTree = "<group>";
+		};
+		1B97298021FEBE2A00F3D602 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				1B97298521FEBE5600F3D602 /* aurora.jpeg */,
+				1B97298421FEBE5600F3D602 /* bear.png */,
+				1B97298121FEBE5600F3D602 /* bearstar.png */,
+				1B97298A21FEBE5600F3D602 /* constellation.jpeg */,
+				1B97298B21FEBE5600F3D602 /* dog.png */,
+				1B97298321FEBE5600F3D602 /* dogstar.png */,
+				1B97298621FEBE5600F3D602 /* eagle.png */,
+				1B97298821FEBE5600F3D602 /* eaglestar.png */,
+				1B97298721FEBE5600F3D602 /* horse.png */,
+				1B97298C21FEBE5700F3D602 /* horsestar.png */,
+				1B97298921FEBE5600F3D602 /* rabbit.png */,
+				1B97298221FEBE5600F3D602 /* rabbitstar.png */,
+			);
+			path = res;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,9 +166,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B97299721FEBE5700F3D602 /* dog.png in Resources */,
+				1B97299021FEBE5700F3D602 /* bear.png in Resources */,
+				1B97299621FEBE5700F3D602 /* constellation.jpeg in Resources */,
+				1B97299421FEBE5700F3D602 /* eaglestar.png in Resources */,
+				1B97299821FEBE5700F3D602 /* horsestar.png in Resources */,
+				1B97299121FEBE5700F3D602 /* aurora.jpeg in Resources */,
+				1B97298E21FEBE5700F3D602 /* rabbitstar.png in Resources */,
 				1B97297921FEBC5900F3D602 /* LaunchScreen.storyboard in Resources */,
+				1B97299521FEBE5700F3D602 /* rabbit.png in Resources */,
 				1B97297621FEBC5900F3D602 /* Assets.xcassets in Resources */,
+				1B97299221FEBE5700F3D602 /* eagle.png in Resources */,
 				1B97297421FEBC5800F3D602 /* Main.storyboard in Resources */,
+				1B97299321FEBE5700F3D602 /* horse.png in Resources */,
+				1B97298F21FEBE5700F3D602 /* dogstar.png in Resources */,
+				1B97298D21FEBE5700F3D602 /* bearstar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
