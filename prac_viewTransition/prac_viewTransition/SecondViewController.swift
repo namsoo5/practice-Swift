@@ -10,11 +10,21 @@ import UIKit
 
 class SecondViewController: UIViewController {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var ageLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    
+    //화면이 나타나기전에 설정함
+    override func viewWillAppear(_ animated: Bool) {
+        self.nameLabel.text = UserInfo.shared.name
+        self.ageLabel.text = UserInfo.shared.age
+    }
+    
+    
     
     @IBAction func pop(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -23,6 +33,7 @@ class SecondViewController: UIViewController {
     @IBAction func dismissmodal(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     
     /*
     // MARK: - Navigation
