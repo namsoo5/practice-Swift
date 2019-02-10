@@ -99,5 +99,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.reloadSections(IndexSet(2...2), with: UITableView.RowAnimation.automatic)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        
+        guard let nextViewController: SecondViewController = segue.destination as? SecondViewController else {
+            return
+        }
+        //sender 네비게이션흐름을만든 객체 여기서는 cell
+        guard let cell: UITableViewCell = sender as? UITableViewCell else {
+            return
+        }
+        
+        nextViewController.textToSet = cell.textLabel?.text
+        //nextViewController.textLabel.text = cell.textLabel?.text  // 뷰가생성되기전에 설정하려하므로 에러발생
+    }
+    
 }
 

@@ -13,6 +13,7 @@
 		1B49A9A02210184D001C374C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B49A99F2210184D001C374C /* Assets.xcassets */; };
 		1B49A9A32210184D001C374C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B49A9A12210184D001C374C /* LaunchScreen.storyboard */; };
 		1B49A9AB22102BBD001C374C /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49A9AA22102BBD001C374C /* CustomTableViewCell.swift */; };
+		1B49A9AD22103D99001C374C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B49A9AC22103D99001C374C /* SecondViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		1B49A9A22210184D001C374C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B49A9A42210184D001C374C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B49A9AA22102BBD001C374C /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		1B49A9AC22103D99001C374C /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				1B49A9982210184B001C374C /* AppDelegate.swift */,
 				1B49A99A2210184B001C374C /* ViewController.swift */,
+				1B49A9AC22103D99001C374C /* SecondViewController.swift */,
 				1B49A99C2210184B001C374C /* Main.storyboard */,
 				1B49A9AA22102BBD001C374C /* CustomTableViewCell.swift */,
 				1B49A99F2210184D001C374C /* Assets.xcassets */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B49A9AD22103D99001C374C /* SecondViewController.swift in Sources */,
 				1B49A9AB22102BBD001C374C /* CustomTableViewCell.swift in Sources */,
 				1B49A99B2210184B001C374C /* ViewController.swift in Sources */,
 				1B49A9992210184B001C374C /* AppDelegate.swift in Sources */,
