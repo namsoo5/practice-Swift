@@ -9,12 +9,41 @@
 import UIKit
 import Photos
 
-class ViewController: UIViewController, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PHPhotoLibraryChangeObserver {
     @IBOutlet weak var tableView: UITableView!
     
     var fetchResult: PHFetchResult<PHAsset>!
     let imageManager: PHCachingImageManager = PHCachingImageManager()
     let cellIdentifier: String = "cell"
+    
+    //어떤 행을 편집할수있게할것인가(밀었을때기능)
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    //편집할 내용
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            let asset: PHAsset = self.fetchResult[indexPath.row]
+            
+            //해당 에셋사진 삭제, 삭제확인창
+            PHPhotoLibrary.shared().performChanges({PHAssetChangeRequest.deleteAssets([asset] as NSArray)}, completionHandler: nil)
+        }
+    }
+    
+    // 포토라이브러리 변화시
+    func photoLibraryDidChange(_ changeInstance: PHChange) {
+        guard let changes = changeInstance.changeDetails(for: fetchResult)
+            else { return }
+        
+        fetchResult = changes.fetchResultAfterChanges  //어떤것이 바꼇는지
+        
+        //바꼇으면 테이블뷰 다시 리로드
+        OperationQueue.main.addOperation {
+            self.tableView.reloadSections(IndexSet(0...0), with: .automatic)
+        }
+    }
     
     //사진가져오기
     func requestCollection(){
@@ -64,6 +93,8 @@ class ViewController: UIViewController, UITableViewDataSource {
         case .restricted:
             print("접근 제한")
         }
+        
+        PHPhotoLibrary.shared().register(self) //포토라이브러리 변화시 딜리게이트 호출
         
     }
 
