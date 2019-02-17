@@ -12,6 +12,7 @@
 		1BFBE1AC221913D20076DFE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BFBE1AA221913D20076DFE8 /* Main.storyboard */; };
 		1BFBE1AE221913D40076DFE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BFBE1AD221913D40076DFE8 /* Assets.xcassets */; };
 		1BFBE1B1221913D40076DFE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1BFBE1AF221913D40076DFE8 /* LaunchScreen.storyboard */; };
+		1BFBE1D7221944140076DFE8 /* ImageZoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFBE1D6221944140076DFE8 /* ImageZoomViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		1BFBE1AD221913D40076DFE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1BFBE1B0221913D40076DFE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1BFBE1B2221913D40076DFE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1BFBE1D6221944140076DFE8 /* ImageZoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageZoomViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				1BFBE1A6221913D20076DFE8 /* AppDelegate.swift */,
 				1BFBE1A8221913D20076DFE8 /* ViewController.swift */,
+				1BFBE1D6221944140076DFE8 /* ImageZoomViewController.swift */,
 				1BFBE1AA221913D20076DFE8 /* Main.storyboard */,
 				1BFBE1AD221913D40076DFE8 /* Assets.xcassets */,
 				1BFBE1AF221913D40076DFE8 /* LaunchScreen.storyboard */,
@@ -135,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BFBE1D7221944140076DFE8 /* ImageZoomViewController.swift in Sources */,
 				1BFBE1A9221913D20076DFE8 /* ViewController.swift in Sources */,
 				1BFBE1A7221913D20076DFE8 /* AppDelegate.swift in Sources */,
 			);

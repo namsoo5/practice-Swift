@@ -37,7 +37,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         guard let changes = changeInstance.changeDetails(for: fetchResult)
             else { return }
         
-        fetchResult = changes.fetchResultAfterChanges  //어떤것이 바꼇는지
+        fetchResult = changes.fetchResultAfterChanges  //바뀐값 다시 저장
         
         //바꼇으면 테이블뷰 다시 리로드
         OperationQueue.main.addOperation {
@@ -48,6 +48,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //사진가져오기
     func requestCollection(){
         let cameraRoll: PHFetchResult<PHAssetCollection> = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .smartAlbumUserLibrary, options: nil)
+
         
         guard let cameraRollCollection = cameraRoll.firstObject else {
             return
@@ -116,6 +117,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         })
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let nextView: ImageZoomViewController = segue.destination as? ImageZoomViewController else{
+            return
+        }
+        
+        guard let cell: UITableViewCell = sender as? UITableViewCell else {
+            return
+        }
+        
+        //눌린 cell의 index 가져옴
+        guard let index: IndexPath = self.tableView.indexPath(for: cell) else {
+            return
+        }
+        
+        nextView.asset = self.fetchResult[index.row]
     }
     
 
