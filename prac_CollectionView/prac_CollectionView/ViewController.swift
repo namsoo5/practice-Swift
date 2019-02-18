@@ -15,6 +15,21 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     let cellIentifier: String = "cell"
     var friends:[Friend] = []
     
+    @IBAction func btclick(_ sender: Any) {
+        //공유할아이템3개
+        let imageToShare: UIImage? = UIImage(named: "ch")
+        let urlToShare: String = "https://www.google.co.kr"
+        let textToShare: String = "hi, google"
+        
+        // 공유아이템지정
+        let activityViewController = UIActivityViewController(activityItems: [imageToShare!, urlToShare, textToShare], applicationActivities: nil)
+        
+        //사용하지않을 타입
+        activityViewController.excludedActivityTypes = [UIActivity.ActivityType.addToReadingList, UIActivity.ActivityType.airDrop]
+        
+        //컨트롤러 나타내기
+        self.present(activityViewController, animated: true, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
