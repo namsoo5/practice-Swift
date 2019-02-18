@@ -8,25 +8,67 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDataSource {
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    var numberOfCell: Int = 10
+    //var numberOfCell: Int = 10
+    @IBOutlet weak var collectionView: UICollectionView!
     let cellIentifier: String = "cell"
+    var friends:[Friend] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let flowLayout: UICollectionViewFlowLayout
+        flowLayout = UICollectionViewFlowLayout()
+        flowLayout.sectionInset = UIEdgeInsets.zero  //margin제거
+        flowLayout.minimumInteritemSpacing = 10 //같은행에 있는 item 간격 10이상
+        flowLayout.minimumLineSpacing = 10  //line 간격 10이상
+        
+        let halfWidth: CGFloat = UIScreen.main.bounds.width / 2.0
+        //화면에 2개씩 나타내기위함
+        
+        flowLayout.estimatedItemSize = CGSize(width: halfWidth-30, height: 90)
+        //예상 사이즈
+        
+        self.collectionView.collectionViewLayout = flowLayout //flowlayou적용
+        
+        
+        let jsonDecoder: JSONDecoder = JSONDecoder()
+        guard let dataAsset: NSDataAsset = NSDataAsset(name:"friends") else {
+            return
+        }
+        do {
+            self.friends = try jsonDecoder.decode([Friend].self, from: dataAsset.data)
+        }catch{
+            print(error.localizedDescription)
+        }
+        
+        self.collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.numberOfCell
+        return self.friends.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell:UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIentifier, for: indexPath)
+        guard let cell:FriendCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIentifier, for: indexPath) as? FriendCollectionViewCell else {
+            print("cell error")
+            return UICollectionViewCell()
+        }
+        
+        let friend:Friend = friends[indexPath.item]  //item은 테이블뷰의 row에해당하는것
+        
+        cell.nameAgeLabel.text = friend.nameAndAge
+        cell.addressLabel.text = friend.fullAddress
         
         return cell
     }
+    
+    //item 선택시
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        self.numberOfCell += 1
+//        collectionView.reloadData()
+//    }
     
     
 
