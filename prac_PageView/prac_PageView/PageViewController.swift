@@ -25,6 +25,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
             return nil
         }
         return subViewController[curindex-1]
+        //nil 일경우 넘어가지않음
     }
     
     //뒤페이지
@@ -44,13 +45,23 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        for ges in self.gestureRecognizers{
+            ges.cancelsTouchesInView = true
+        }
         
+        for view in self.view.subviews{
+            (view as! UIScrollView).isScrollEnabled = false
+        }
         self.delegate = self
         self.dataSource = self
         //페이지달아주기
         self.setViewControllers([subViewController[0]], direction: .forward, animated: false, completion: nil)
         
         // Do any additional setup after loading the view.
+    }
+    
+    func nextpage() {
+        <#function body#>
     }
 
 }

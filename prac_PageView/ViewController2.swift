@@ -11,6 +11,7 @@ import UIKit
 class ViewController2: UIViewController {
 
     @IBOutlet weak var page: UIPageControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,7 +20,12 @@ class ViewController2: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func before(_ sender: Any) {
+    }
+    @IBAction func next(_ sender: Any) {
+    
+    }
+    
     /*
     // MARK: - Navigation
 
