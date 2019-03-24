@@ -17,7 +17,7 @@ class MenuTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+         //self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -63,9 +63,23 @@ class MenuTableViewController: UITableViewController {
             return cell
             
         }
-        
-        
-        
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\(indexPath.row)선택!")
+        if indexPath.section == 1 {   //섹션1이 메뉴리스트에 해당
+            switch indexPath.row {
+                //각 행에맞는 메뉴클릭시
+            case 0:
+                guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "menu1") else {
+                    print("not found...")
+                    return}
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            default:
+                return
+            }
+        }
     }
     
 
