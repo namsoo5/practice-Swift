@@ -1,0 +1,6 @@
+framework module Pods_prac_FMDB {
+  umbrella header "Pods-prac_FMDB-umbrella.h"
+
+  export *
+  module * { export * }
+}
