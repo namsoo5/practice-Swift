@@ -123,3 +123,115 @@ room = nil    //Room 참조횟수0
 //type = nil    //RoomType 참조횟수1
 //print(type?.room?.number)
 
+//획득목록 capture list
+class Person {
+    let name: String
+    
+    lazy var myNameIs: () -> String = {
+        return "my name is \(self.name)"
+    }
+    
+    init(_ n: String) {
+        self.name = n
+    }
+    
+    deinit {
+//        print("deinit!!")
+    }
+}
+
+var people: Person? = Person("player")
+//print(people?.myNameIs())
+people = nil
+//Optional("my name is player")   ->  강한참조 순환문제
+
+class Person2 {
+    let name: String
+    
+    lazy var myNameIs: () -> String = { [unowned self] in
+        return "my name is \(self.name)"
+    }
+    
+    init(_ n: String) {
+        self.name = n
+    }
+    
+    deinit {
+//        print("deinit!!")
+    }
+}
+
+var people2: Person2? = Person2("player")
+//print(people2?.myNameIs())
+people2 = nil
+//Optional("my name is player")
+//deinit!!
+
+//defer
+//오류를 던지기 직전까지 작성된 defer구문 까지만 실행됨
+//여러개의 구문이 하나의 범위내부에 속해있다면 아래부터 위로 역순으로 실행됨
+func someThrowing(err: Bool) throws -> Int {
+    defer {
+        print("first")
+    }
+    if err {
+        enum SomeErr: Error {
+            case justErr
+        }
+        
+        throw SomeErr.justErr
+    }
+    defer {
+        print("second")
+    }
+    defer {
+        print("third")
+    }
+    return 100
+}
+//try? someThrowing(err: true)
+//first
+//try? someThrowing(err: false)
+//third
+//second
+//first
+
+func someFunc() {
+    print("1")
+    
+    defer {
+        print("2")
+    }
+    
+    do {
+        defer {
+            print("3")
+        }
+        print("4")
+    }
+    
+    defer {
+        print("5")
+    }
+    print("6")
+}
+//someFunc()
+//1
+//4
+//3
+//6
+//5
+//2
+
+//실행파일 이름, 코드실행되는 줄수
+//print("\(#file), \(#line)")
+
+//#if swift(>=4)
+//print("swift4이상 환경에서 빌드")
+//#endif
+
+if #available(iOS 11, *) {
+    print("ios 11이상 버전에서 실행중 입니다.")
+}
+@available(swift, introduced: 4.0)  //이 변수는 스위프트4.0이상에서 사용 할 수 있습니다.
+var swift4 = "swift4.0"
