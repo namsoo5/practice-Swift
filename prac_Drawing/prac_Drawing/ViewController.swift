@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
     
     var lastPos = CGPoint.zero
@@ -15,12 +16,29 @@ class ViewController: UIViewController {
     var brushWidth: CGFloat = 10.0
     var opacity: CGFloat = 1.0
     var swiped = false
+
     
     @IBOutlet weak var tempImageView: UIImageView!
-    @IBOutlet weak var mainImageView: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let bz = UIBezierPath()
+        bz.move(to: CGPoint(x: 50, y: 50))
+        bz.addLine(to: CGPoint(x: 50, y: 100))
+        bz.addLine(to: CGPoint(x: 100, y: 100))
+        bz.addLine(to: CGPoint(x: 100, y: 50))
+        bz.close()
+        bz.lineJoinStyle = .round
+        bz.stroke()
+        
+        let shape = CAShapeLayer()
+        shape.lineWidth = 3 // 라인 굵기는 3
+        shape.path = bz.cgPath // 해당 경로는 위 circle을 사용
+        shape.strokeColor = UIColor.black.cgColor // 외부 경계선은 검정색
+        shape.fillColor = UIColor.clear.cgColor // 내부 색은 비우고
+        shape.lineJoin = .round
+        self.view.layer.addSublayer(shape) // 해당 레이어를 서브로 추가
         
     }
 
@@ -31,7 +49,7 @@ class ViewController: UIViewController {
         swiped = false
         self.lastPos = touch.location(in: self.view)
     }
-    
+ 
     func drawLine(from fromPoint: CGPoint, to toPoint: CGPoint) {
         // 1
         UIGraphicsBeginImageContext(view.frame.size)
@@ -59,6 +77,7 @@ class ViewController: UIViewController {
         UIGraphicsEndImageContext()
     }
     
+    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {
             return
@@ -69,6 +88,7 @@ class ViewController: UIViewController {
         let currentPos = touch.location(in: view)
         drawLine(from: lastPos, to: currentPos)
         
+        
         // 7
         lastPos = currentPos
     }
@@ -77,6 +97,7 @@ class ViewController: UIViewController {
         if !swiped {
             // draw a single point
             drawLine(from: lastPos, to: lastPos)
+            
         }
         
         // Merge tempImageView into mainImageView
@@ -88,5 +109,6 @@ class ViewController: UIViewController {
         
 //        tempImageView.image = nil
     }
+    
+    
 }
-
