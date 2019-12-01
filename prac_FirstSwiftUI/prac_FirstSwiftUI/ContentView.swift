@@ -61,13 +61,13 @@ struct SecondContent: View{
     @State var gender = 0
     
     var resultScript:String{
-      if(name.isEmpty){
-        return "이름을 입력해주세요."
-      }else{
-        return "\(name)님은 성별이 \(genderType[gender])이며 나이는 \(120 - bornIn)입니다."
-      }
+        if(name.isEmpty){
+            return "이름을 입력해주세요."
+        }else{
+            return "\(name)님은 성별이 \(genderType[gender])이며 나이는 \(120 - bornIn)입니다."
+        }
     }
-
+    
     
     var body: some View {
         NavigationView{
@@ -100,21 +100,98 @@ struct SecondContent: View{
                 }
                 
                 Section(header: Text("결과")){
-                  Text("\(resultScript)")
+                    Text("\(resultScript)")
                 }
             }.navigationBarTitle("회원가입")
         }
     }
 }
 
-struct ContentView_Preview2: PreviewProvider {
-    static var previews: some View {
-        SecondContent()
+struct ThirdContent: View {
+    var body: some View {
+        ZStack{
+        
+            AngularGradient(gradient: Gradient(colors: [.red,.orange,.yellow,.green,.blue,.purple]), center: .center).edgesIgnoringSafeArea(.all)
+            
+            VStack{
+                HStack{
+                    Text("11시")
+                    Spacer()
+                    Text("12시")
+                    Spacer()
+                    Text("11시")
+                }
+                Spacer()
+                HStack{
+                    Text("9시")
+                    Spacer()
+                    Text("중앙")
+                    Spacer()
+                    Text("3시")
+                }
+                Spacer()
+                HStack{
+                    Text("7시")
+                    Spacer()
+                    Text("6시")
+                    Spacer()
+                    Text("5시")
+                }
+            }
+            
+            
+            
+            
+            /*
+            Color.yellow.edgesIgnoringSafeArea(.all)
+            RadialGradient(gradient: Gradient(colors:[.white, .black]), center: .center, startRadius: 310, endRadius: 100)
+            AngularGradient(gradient: Gradient(colors:[.red,.yellow,.blue]), center: .center)
+            Color.red.frame(width:300,height: 300)
+            Color(red: 0.1, green: 0.2, blue: 0.3).frame(width:00,height:2000)
+            Color.blue.frame(width:100,height: 100)
+            
+            
+            Color.yellow.edgesIgnoringSafeArea(.all)  //SafeArea 영역무시
+            Color.red.frame(width: 300, height: 300)
+            Color.blue.frame(width:200,height: 200)
+            
+            VStack(alignment: .leading, spacing: 20){
+                Text("hello123")
+                Spacer().frame(height: 5)
+                Text("hello")
+                //            Spacer().frame(width: 5)
+                Text("hello")
+                
+                
+                HStack(alignment: .center, spacing: 20){
+                    Text("hi123")
+                    Spacer()
+                    Text("hi")
+                    Spacer()
+                    Text("hi")
+                }.background(Color.gray)
+                
+            }
+            */
+        }
     }
 }
 
-struct ContentView_Previews1: PreviewProvider {
+struct ContentView_Preview3: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ThirdContent()
     }
 }
+
+
+//struct ContentView_Preview2: PreviewProvider {
+//    static var previews: some View {
+//        SecondContent()
+//    }
+//}
+//
+//struct ContentView_Previews1: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
