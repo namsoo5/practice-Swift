@@ -37,6 +37,14 @@
                                     <action selector="connectSocket:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0qS-cm-K34"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQx-hz-bfB">
+                                <rect key="frame" x="181" y="251" width="52" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="소켓종료"/>
+                                <connections>
+                                    <action selector="disconnetSocket:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ae8-oM-LO3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
