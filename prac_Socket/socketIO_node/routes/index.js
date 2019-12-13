@@ -1,5 +1,3 @@
-
-
 var app = require('express');
 var router = app.Router();
 var http = require('http').Server(app);
@@ -21,14 +19,35 @@ http.listen(9000, function () {
   
 });
 
-room.on('connection', function (clientSocket) {
+room.on('connection',  (clientSocket) => {
   console.log('a user connected');
   clientSocket.join("/test")
 
   clientSocket.on('event', (msg) => {
-    console.log("some..")
     console.log(msg)
     console.log(msg["message"])
+    console.log('*************')
+  })
+
+  clientSocket.on('event1', (msg) => {
+    console.log(msg)
+    console.log(msg[0]["name"])
+    console.log(msg[1]["email"])
+
+    clientSocket.emit('test', {'res' : 'event1 response!'})
+  })
+
+  clientSocket.on('event2', (msg) => {
+    console.log(msg)
+    console.log(msg["name"])
+    console.log(msg["email"])
+
+    clientSocket.emit('test', {'res' : 'event2 response!'})
+  })
+
+  clientSocket.on('msg', (msg) => {
+    console.log(msg)
+    clientSocket.emit('test', {'ack' : 1})
   })
 
   clientSocket.on('disconnect', function () {
