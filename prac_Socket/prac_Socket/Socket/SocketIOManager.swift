@@ -28,7 +28,6 @@ class SocketIOManager: NSObject {
     func establishConnection(){
 
         socket.connect()
-        socket.joinNamespace()
     }
     
     func closeConnection(){
@@ -47,8 +46,11 @@ class SocketIOManager: NSObject {
         
     }
     func sendMessage(message: String, withNickname nickname: String) {
-        socket.emit("test is...")
-        socket.emit("event",  ["message": "This is a test message"])
+        socket.emit("event",  ["message" : "This is a test message"])
+        socket.emit("event1", [["name" : "ns"], ["email" : "@naver.com"]])
+        socket.emit("event2", ["name" : "ns", "email" : "@naver.com"])
+        socket.emit("msg", ["nick": nickname, "msg" : message])
+        
     }
     
     func getChatMessage(completionHandler: ([String: AnyObject]) -> Void){

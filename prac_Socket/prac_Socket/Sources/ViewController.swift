@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func sendData(_ sender: Any) {
-        SocketIOManager.shared.sendMessage(message: "hihi", withNickname: "ns")
+        SocketIOManager.shared.sendMessage(message: self.textField.text!, withNickname: "ns")
     }
     
     
