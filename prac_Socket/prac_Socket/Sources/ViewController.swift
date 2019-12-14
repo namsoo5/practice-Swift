@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     var testList = ["1","1","2"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tableView.delegate = self
         self.tableView.dataSource = self //print(UIDevice.current.identifierForVendor?.uuidString)
         
         
@@ -34,6 +34,7 @@ class ViewController: UIViewController {
             self.tableView.reloadData()
             SocketIOManager.shared.establishConnection(room: "test")
         }
+
         
     }
     
@@ -45,15 +46,20 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.roomList.count
+        return self.testList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "room", for: indexPath)
-        cell.textLabel?.text = roomList[indexPath.row]
+        cell.textLabel?.text = testList[indexPath.row]
         return cell
         
     }
-    
-    
+}
+
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nextVC = self.storyboard?.instantiateViewController(identifier: "Room") as! SecondViewController
+        self.navigationController?.pushViewController(nextVC, animated: true)
+    }
 }
