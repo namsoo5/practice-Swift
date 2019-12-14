@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		066D4EFD23A3598E00EC1DDE /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066D4EFC23A3598E00EC1DDE /* SocketIOManager.swift */; };
+		066D4F0023A4C11000EC1DDE /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066D4EFF23A4C11000EC1DDE /* APIService.swift */; };
+		066D4F0223A4C2EA00EC1DDE /* LocalChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066D4F0123A4C2EA00EC1DDE /* LocalChatService.swift */; };
+		066D4F0723A4C45500EC1DDE /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066D4F0623A4C45500EC1DDE /* ChatListModel.swift */; };
 		069044292383D321003FDE53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069044282383D321003FDE53 /* AppDelegate.swift */; };
 		0690442B2383D321003FDE53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0690442A2383D321003FDE53 /* SceneDelegate.swift */; };
 		0690442D2383D321003FDE53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0690442C2383D321003FDE53 /* ViewController.swift */; };
@@ -19,6 +22,9 @@
 
 /* Begin PBXFileReference section */
 		066D4EFC23A3598E00EC1DDE /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		066D4EFF23A4C11000EC1DDE /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		066D4F0123A4C2EA00EC1DDE /* LocalChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalChatService.swift; sourceTree = "<group>"; };
+		066D4F0623A4C45500EC1DDE /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		069044252383D321003FDE53 /* prac_Socket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = prac_Socket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		069044282383D321003FDE53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0690442A2383D321003FDE53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +50,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		066D4EFE23A4C0C200EC1DDE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				066D4EFF23A4C11000EC1DDE /* APIService.swift */,
+				066D4F0123A4C2EA00EC1DDE /* LocalChatService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		066D4F0323A4C3E600EC1DDE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				066D4F0623A4C45500EC1DDE /* ChatListModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		0690441C2383D321003FDE53 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +107,8 @@
 		069044402383D9CD003FDE53 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				066D4F0323A4C3E600EC1DDE /* Model */,
+				066D4EFE23A4C0C200EC1DDE /* Service */,
 				069044282383D321003FDE53 /* AppDelegate.swift */,
 				0690442A2383D321003FDE53 /* SceneDelegate.swift */,
 				0690442C2383D321003FDE53 /* ViewController.swift */,
@@ -233,10 +258,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				066D4F0023A4C11000EC1DDE /* APIService.swift in Sources */,
 				066D4EFD23A3598E00EC1DDE /* SocketIOManager.swift in Sources */,
 				0690442D2383D321003FDE53 /* ViewController.swift in Sources */,
+				066D4F0723A4C45500EC1DDE /* ChatListModel.swift in Sources */,
 				069044292383D321003FDE53 /* AppDelegate.swift in Sources */,
 				0690442B2383D321003FDE53 /* SceneDelegate.swift in Sources */,
+				066D4F0223A4C2EA00EC1DDE /* LocalChatService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

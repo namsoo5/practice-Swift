@@ -15,8 +15,7 @@ class SocketIOManager: NSObject {
     var socket: SocketIOClient!
     override init() {
         super.init()
-        socket = self.manager.socket(forNamespace: "/test")
-        
+        socket = self.manager.defaultSocket
         socket.on("test") { dataArray, ack in
             print(dataArray)
         }
