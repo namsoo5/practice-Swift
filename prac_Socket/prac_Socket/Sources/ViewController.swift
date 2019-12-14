@@ -29,9 +29,10 @@ class ViewController: UIViewController {
     }
     @IBAction func connectSocket(_ sender: Any) {
         LocalChatService.shared.getMemoList(id: self.id){ data in
+            print("success")
             self.roomList = data.room
             self.tableView.reloadData()
-            SocketIOManager.shared.establishConnection()
+            SocketIOManager.shared.establishConnection(room: "test")
         }
         
     }

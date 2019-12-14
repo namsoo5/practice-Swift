@@ -28,10 +28,10 @@ class LocalChatService {
                 
                 do{
                     let decoder = JSONDecoder()
+                    print("alamo")
+                    let object = try decoder.decode([ChatListModel].self, from: data)
                     
-                    let object = try decoder.decode(ChatListModel.self, from: data)
-                    
-                    completion(object)
+                    completion(object[0])
                     
                 }catch(let err){
                     print(err.localizedDescription)

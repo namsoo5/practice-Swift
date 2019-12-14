@@ -24,8 +24,8 @@ class SocketIOManager: NSObject {
     
     
     
-    func establishConnection(){
-
+    func establishConnection(room: String){
+        socket = self.manager.socket(forNamespace: "/"+room)
         socket.connect()
     }
     

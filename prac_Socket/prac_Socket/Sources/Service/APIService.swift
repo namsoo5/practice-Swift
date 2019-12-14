@@ -11,6 +11,6 @@ import Foundation
 
 struct APIBase {
     
-    static let local = "http://localhost:9000/"
+    static let local = "http://localhost:3000/"
     static let getChatListAPI = local+"getChatList/"
 }
