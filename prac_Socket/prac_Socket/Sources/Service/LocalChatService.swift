@@ -9,12 +9,12 @@
 import Foundation
 import Alamofire
 
-class LocalChatService {
+struct LocalChatService {
     private init() {}
     
     static let shared = LocalChatService()
     
-    func getMemoList(id: String, completion: @escaping (ChatListModel) -> Void){
+    func getTestChatList(id: String, completion: @escaping (ChatListModel) -> Void){
         
         let url = APIBase.getChatListAPI+id
         
@@ -28,7 +28,6 @@ class LocalChatService {
                 
                 do{
                     let decoder = JSONDecoder()
-                    print("alamo")
                     let object = try decoder.decode([ChatListModel].self, from: data)
                     
                     completion(object[0])
@@ -43,4 +42,5 @@ class LocalChatService {
             }
         }
     }
+
 }

@@ -97,27 +97,35 @@ extension SecondViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         var cell: ChatTVC!
-        if self.myChat[indexPath.row].type == 0 { //my
+        if self.myChat[indexPath.row].type == 0 { //my Chat
             cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as? ChatTVC
-        }else { //otehr
+        }else { //otehr Chat
             cell = tableView.dequeueReusableCell(withIdentifier: "YourCell", for: indexPath) as? ChatTVC
         }
+        
         cell.chatLabel.text = self.myChat[indexPath.row].message
         
+        // 말풍선 구현
         let view = UIView()
         
+        // 글자수에 비례한 넓이
         var width: CGFloat = CGFloat((cell.chatLabel.text?.count ?? 1) * 11 + 20)
         if width > 250 {
             width = 250
         }
         let height = cell.contentView.frame.height
         
+        
         view.frame.size = CGSize(width: width, height: height)
         view.layer.cornerRadius = 7
         view.backgroundColor = UIColor.white
         cell.addSubview(view)
+        // Label이 가려지지않도록 설정
         cell.sendSubviewToBack(view)
+        
+        // 말풍선 오토레이아웃
         if self.myChat[indexPath.row].type == 0 {
             view.translatesAutoresizingMaskIntoConstraints = false
             view.trailingAnchor.constraint(equalTo: cell.chatLabel.trailingAnchor, constant: 10).isActive = true
@@ -132,7 +140,9 @@ extension SecondViewController: UITableViewDataSource {
             view.widthAnchor.constraint(equalToConstant: width).isActive = true
         }
         
-        
         return cell
     }
+    
+    
 }
+
