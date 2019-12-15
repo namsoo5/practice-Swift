@@ -76,6 +76,15 @@ room.on('connection', (clientSocket) => {
 
   console.log(clientSocket.id)
 
+  //echo
+  //user = 0, other = 1
+  clientSocket.on('test', (msg) => {
+    console.log(msg["message"])
+    clientSocket.emit('test', { 
+      'type' : 1,
+     'message' : msg })
+  })
+
   clientSocket.on('event', (msg) => {
     console.log(msg)
     console.log(msg["message"])
