@@ -52,32 +52,12 @@ class SecondViewController: UIViewController {
         }
     }
     
-    func chatBackgroundView(color: UIColor, label: UILabel, cell: ChatTVC) -> UIView {
-        let view = UIView()
-        
-        let width: CGFloat = CGFloat((label.text?.count ?? 1) * 14)
-        let height = cell.contentView.frame.height
-        
-        view.frame.size = CGSize(width: width, height: height)
-        view.backgroundColor = color
-        guard let index = self.tableView.indexPath(for: cell) else{return UIView()}
-        if self.myChat[index.row].type == 0 {
-            view.translatesAutoresizingMaskIntoConstraints = false
-            view.
-        }else {
-            
-        }
-        
-        view.layer.cornerRadius = CGFloat(10)
-        
-        return view
-    }
     
-    //채팅 업데이트
+    // 채팅 업데이트
     func updateChat( count: Int, completion: @escaping ()->Void ) {
         DispatchQueue.main.async {
             self.tableView.beginUpdates()
-            self.tableView.insertRows(at: [IndexPath(row: self.myChat.count-1, section: 0)], with: .automatic)
+            self.tableView.insertRows(at: [IndexPath(row: self.myChat.count-1, section: 0)], with: .none)
             self.tableView.endUpdates()
             
             let indexPath = IndexPath(
@@ -124,9 +104,35 @@ extension SecondViewController: UITableViewDataSource {
             cell = tableView.dequeueReusableCell(withIdentifier: "YourCell", for: indexPath) as? ChatTVC
         }
         cell.chatLabel.text = self.myChat[indexPath.row].message
-        let chatBackground = chatBackgroundView(color: .white, label: cell.chatLabel, cell: cell)
         
-        cell.insertSubview(chatBackground, belowSubview: cell.contentView)
+        let view = UIView()
+        
+        var width: CGFloat = CGFloat((cell.chatLabel.text?.count ?? 1) * 11 + 20)
+        if width > 250 {
+            width = 250
+        }
+        let height = cell.contentView.frame.height
+        
+        view.frame.size = CGSize(width: width, height: height)
+        view.layer.cornerRadius = 7
+        view.backgroundColor = UIColor.white
+        cell.addSubview(view)
+        cell.sendSubviewToBack(view)
+        if self.myChat[indexPath.row].type == 0 {
+            view.translatesAutoresizingMaskIntoConstraints = false
+            view.trailingAnchor.constraint(equalTo: cell.chatLabel.trailingAnchor, constant: 10).isActive = true
+            view.topAnchor.constraint(equalTo: cell.chatLabel.topAnchor).isActive = true
+            view.bottomAnchor.constraint(equalTo: cell.chatLabel.bottomAnchor).isActive = true
+            view.widthAnchor.constraint(equalToConstant: width).isActive = true
+        }else {
+            view.translatesAutoresizingMaskIntoConstraints = false
+            view.leadingAnchor.constraint(equalTo: cell.chatLabel.leadingAnchor, constant: -10).isActive = true
+            view.topAnchor.constraint(equalTo: cell.chatLabel.topAnchor).isActive = true
+            view.bottomAnchor.constraint(equalTo: cell.chatLabel.bottomAnchor).isActive = true
+            view.widthAnchor.constraint(equalToConstant: width).isActive = true
+        }
+        
+        
         return cell
     }
 }
