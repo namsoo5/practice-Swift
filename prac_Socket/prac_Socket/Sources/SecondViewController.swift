@@ -23,12 +23,15 @@ class SecondViewController: UIViewController {
         self.tableView.dataSource = self
         self.tableView.rowHeight = UITableView.automaticDimension
         
+        
     }
     
+    // 뒤로가기시 소켓종료
     override func viewDidDisappear(_ animated: Bool) {
         SocketIOManager.shared.closeConnection()
     }
     
+    // 서버로부터 메시지 받을때 채팅창 업데이트
     func bindMsg() {
         self.socket.on("test") { (dataArray, socketAck) in
             //            var messageDictionary = [String: AnyObject]()
@@ -40,14 +43,54 @@ class SecondViewController: UIViewController {
             chat.type = data["type"] as! Int
             chat.message = data["message"] as! String
             self.myChat.append(chat)
-            
-            self.tableView.beginUpdates()
-            self.tableView.insertRows(at: [IndexPath(row: self.myChat.count-1, section: 0)], with: .fade)
-            self.tableView.endUpdates()
             print(chat)
+            
+            self.updateChat(count: self.myChat.count) {
+                print("Get Message")
+            }
             
         }
     }
+    
+    func chatBackgroundView(color: UIColor, label: UILabel, cell: ChatTVC) -> UIView {
+        let view = UIView()
+        
+        let width: CGFloat = CGFloat((label.text?.count ?? 1) * 14)
+        let height = cell.contentView.frame.height
+        
+        view.frame.size = CGSize(width: width, height: height)
+        view.backgroundColor = color
+        guard let index = self.tableView.indexPath(for: cell) else{return UIView()}
+        if self.myChat[index.row].type == 0 {
+            view.translatesAutoresizingMaskIntoConstraints = false
+            view.
+        }else {
+            
+        }
+        
+        view.layer.cornerRadius = CGFloat(10)
+        
+        return view
+    }
+    
+    //채팅 업데이트
+    func updateChat( count: Int, completion: @escaping ()->Void ) {
+        DispatchQueue.main.async {
+            self.tableView.beginUpdates()
+            self.tableView.insertRows(at: [IndexPath(row: self.myChat.count-1, section: 0)], with: .automatic)
+            self.tableView.endUpdates()
+            
+            let indexPath = IndexPath(
+                row: count-1,
+                section: 0
+            )
+            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
+            
+        }
+        completion()
+    }
+    
+    // 전송버튼
     @IBAction func sendMsgButtonClick(_ sender: Any) {
         let text = self.textField.text!
         self.socket.emit("test", text)
@@ -55,9 +98,10 @@ class SecondViewController: UIViewController {
         
         self.myChat.append(chatType(type: 0, message: text))
         
-        self.tableView.beginUpdates()
-        self.tableView.insertRows(at: [IndexPath(row: self.myChat.count-1, section: 0)], with: .automatic)
-        self.tableView.endUpdates()
+        self.updateChat(count: self.myChat.count) {
+            print("Send Message")
+        }
+        
     }
 }
 
@@ -80,9 +124,9 @@ extension SecondViewController: UITableViewDataSource {
             cell = tableView.dequeueReusableCell(withIdentifier: "YourCell", for: indexPath) as? ChatTVC
         }
         cell.chatLabel.text = self.myChat[indexPath.row].message
-        cell.chatLabel.sizeToFit()
+        let chatBackground = chatBackgroundView(color: .white, label: cell.chatLabel, cell: cell)
         
+        cell.insertSubview(chatBackground, belowSubview: cell.contentView)
         return cell
     }
-    
 }

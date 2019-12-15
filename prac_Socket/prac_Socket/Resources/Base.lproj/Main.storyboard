@@ -104,7 +104,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가나다다ㅏ 가나다가 가나다 가나 가가가 가" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weF-WX-oVL">
-                                                    <rect key="frame" x="100" y="14" width="274" height="42"/>
+                                                    <rect key="frame" x="120" y="14" width="254" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -113,9 +113,9 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="weF-WX-oVL" firstAttribute="centerY" secondItem="Wxf-o1-4C5" secondAttribute="centerY" id="4ly-Ay-Oy5"/>
+                                                <constraint firstItem="weF-WX-oVL" firstAttribute="leading" secondItem="Wxf-o1-4C5" secondAttribute="leadingMargin" constant="100" id="WBz-KB-azs"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="weF-WX-oVL" secondAttribute="trailing" constant="20" id="bCp-y6-uaP"/>
                                                 <constraint firstItem="weF-WX-oVL" firstAttribute="top" secondItem="Wxf-o1-4C5" secondAttribute="topMargin" constant="3" id="gfD-hy-AJd"/>
-                                                <constraint firstItem="weF-WX-oVL" firstAttribute="leading" secondItem="Wxf-o1-4C5" secondAttribute="leading" constant="100" id="pAt-EE-ZLS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -171,7 +171,9 @@
                                             <constraint firstAttribute="width" constant="40" id="6V8-n8-1pC"/>
                                             <constraint firstAttribute="height" constant="40" id="d6i-Gj-Jhf"/>
                                         </constraints>
-                                        <state key="normal" title="전송"/>
+                                        <state key="normal" title="전송">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <integer key="value" value="20"/>
