@@ -21,7 +21,7 @@ class SecondViewController: UIViewController {
         bindMsg()
         
         self.tableView.dataSource = self
-        //        self.tableView.insert
+        
     }
     
     func bindMsg() {
@@ -30,8 +30,10 @@ class SecondViewController: UIViewController {
             var chat = chatType()
             print("***************************************")
             print(type(of: dataArray))
-            chat.type = dataArray[0] as! Int
-            chat.message = dataArray[0] as! String
+            let data = dataArray[0] as! NSDictionary
+            
+            chat.type = data["type"] as! Int
+            chat.message = data["message"] as! String
             self.myChat.append(chat)
             
             self.tableView.beginUpdates()
@@ -44,6 +46,13 @@ class SecondViewController: UIViewController {
     @IBAction func sendMsgButtonClick(_ sender: Any) {
         let text = self.textField.text!
         self.socket.emit("test", text)
+        
+        
+        self.myChat.append(chatType(type: 0, message: text))
+        
+        self.tableView.beginUpdates()
+        self.tableView.insertRows(at: [IndexPath(row: self.myChat.count-1, section: 0)], with: .automatic)
+        self.tableView.endUpdates()
     }
 }
 
@@ -54,12 +63,8 @@ struct chatType {
 
 extension SecondViewController: UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return self.myChat.count
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.myChat.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
