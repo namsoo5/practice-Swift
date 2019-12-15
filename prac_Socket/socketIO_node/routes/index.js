@@ -1,27 +1,80 @@
-var app = require('express');
-var router = app.Router();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+const app = require('express');
+const router = app.Router();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
 const room = io.of('/test');
+const aroom = io.of('/a');
+const broom = io.of('/b');
+const croom = io.of('/c');
+
+const userList = [
+  {
+    "id": "1",
+    "name": "ns",
+    "isConneted": false
+  },
+  {
+    "id": "2",
+    "name": "jm",
+    "isConneted": false
+  },
+  {
+    "id": "3",
+    "name": "jh",
+    "isConneted": false
+  },
+  {
+    "id": "4",
+    "name": "hj",
+    "isConneted": false
+  }
+]
+
+const chatRoom = [
+  {
+    'name' : '1',
+    'room' : [ "test", "b", "c" ]
+  },
+  {
+    'name' : '2',
+    'room' : [ "d", "b", "c" ]
+  }
+]
+
 
 router.get('/', function (req, res) {
-  room.emit('test', { 
-    'Hello' : 'World',
-    'test' : 'good'
- });
+  room.emit('test', {
+    'Hello': 'World',
+    'test': 'good'
+  });
   res.send('<h1>AppCoda - SocketChat Server</h1>');
 });
 
 
+router.get('/getChatList/:name', (req, res) => {
+  const name = req.params.name
+  const list = []
+  
+  chatRoom.forEach(element => {
+    if( element.name == name ){
+      list.push(element)
+    }
+  }); 
+
+  res.send(list)
+})
+
+
 http.listen(9000, function () {
   console.log('Listening on *:9000');
-  
+
 });
 
-room.on('connection',  (clientSocket) => {
+room.on('connection', (clientSocket) => {
   console.log('a user connected');
-  clientSocket.join("/test")
+
+  console.log(clientSocket.id)
 
   clientSocket.on('event', (msg) => {
     console.log(msg)
@@ -34,7 +87,7 @@ room.on('connection',  (clientSocket) => {
     console.log(msg[0]["name"])
     console.log(msg[1]["email"])
 
-    clientSocket.emit('test', {'res' : 'event1 response!'})
+    clientSocket.emit('test', { 'res': 'event1 response!' })
   })
 
   clientSocket.on('event2', (msg) => {
@@ -42,18 +95,21 @@ room.on('connection',  (clientSocket) => {
     console.log(msg["name"])
     console.log(msg["email"])
 
-    clientSocket.emit('test', {'res' : 'event2 response!'})
+    clientSocket.emit('test', { 'res': 'event2 response!' })
   })
 
   clientSocket.on('msg', (msg) => {
     console.log(msg)
-    clientSocket.emit('test', {'ack' : 1})
+    clientSocket.emit('test', { 'ack': 1 })
   })
 
   clientSocket.on('disconnect', function () {
     console.log('user disconnected');
   })
+
+  // clientSocket.on('')
 })
+
 
 
 
