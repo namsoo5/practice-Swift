@@ -91,9 +91,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Z3I-kE-L43">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Z3I-kE-L43">
                                 <rect key="frame" x="0.0" y="44" width="414" height="758"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" red="1" green="0.95510541426512507" blue="0.75027243651706976" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCell" rowHeight="70" id="GRD-v1-8Jj" customClass="ChatTVC" customModule="prac_Socket" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="70"/>
@@ -102,21 +103,22 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weF-WX-oVL">
-                                                    <rect key="frame" x="332" y="24.5" width="42" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="aus-8L-HOo"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가나다다ㅏ 가나다가 가나다 가나 가가가 가" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weF-WX-oVL">
+                                                    <rect key="frame" x="100" y="14" width="274" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="weF-WX-oVL" firstAttribute="centerY" secondItem="Wxf-o1-4C5" secondAttribute="centerY" id="4ly-Ay-Oy5"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="weF-WX-oVL" secondAttribute="trailing" constant="20" id="bCp-y6-uaP"/>
+                                                <constraint firstItem="weF-WX-oVL" firstAttribute="top" secondItem="Wxf-o1-4C5" secondAttribute="topMargin" constant="3" id="gfD-hy-AJd"/>
+                                                <constraint firstItem="weF-WX-oVL" firstAttribute="leading" secondItem="Wxf-o1-4C5" secondAttribute="leading" constant="100" id="pAt-EE-ZLS"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="chatLabel" destination="weF-WX-oVL" id="r4e-5m-JvF"/>
                                         </connections>
@@ -128,21 +130,23 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9u-MI-yST">
-                                                    <rect key="frame" x="40" y="24.5" width="42" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="HI5-is-0qa"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9u-MI-yST">
+                                                    <rect key="frame" x="40" y="14" width="254" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
+                                                <constraint firstItem="j9u-MI-yST" firstAttribute="top" secondItem="NVb-kM-LkZ" secondAttribute="topMargin" constant="3" id="32r-KC-UU5"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="j9u-MI-yST" secondAttribute="trailing" constant="100" id="5vV-8W-T8t"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="j9u-MI-yST" secondAttribute="bottom" constant="3" id="8Z3-SB-vqt"/>
                                                 <constraint firstItem="j9u-MI-yST" firstAttribute="leading" secondItem="NVb-kM-LkZ" secondAttribute="leadingMargin" constant="20" id="rOD-Gi-ZaF"/>
                                                 <constraint firstItem="j9u-MI-yST" firstAttribute="centerY" secondItem="NVb-kM-LkZ" secondAttribute="centerY" id="svB-96-DK8"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="chatLabel" destination="j9u-MI-yST" id="Gj7-mh-5m9"/>
                                         </connections>

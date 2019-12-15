@@ -21,12 +21,13 @@ class SecondViewController: UIViewController {
         bindMsg()
         
         self.tableView.dataSource = self
+        self.tableView.rowHeight = UITableView.automaticDimension
         
     }
     
     func bindMsg() {
         self.socket.on("test") { (dataArray, socketAck) in
-//            var messageDictionary = [String: AnyObject]()
+            //            var messageDictionary = [String: AnyObject]()
             var chat = chatType()
             print("***************************************")
             print(type(of: dataArray))
@@ -74,7 +75,8 @@ extension SecondViewController: UITableViewDataSource {
         }else { //otehr
             cell = tableView.dequeueReusableCell(withIdentifier: "YourCell", for: indexPath) as? ChatTVC
         }
-         cell.chatLabel.text = self.myChat[indexPath.row].message
+        cell.chatLabel.text = self.myChat[indexPath.row].message
+        cell.chatLabel.sizeToFit()
         
         return cell
     }
