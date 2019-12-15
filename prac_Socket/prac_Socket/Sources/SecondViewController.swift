@@ -25,6 +25,10 @@ class SecondViewController: UIViewController {
         
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        SocketIOManager.shared.closeConnection()
+    }
+    
     func bindMsg() {
         self.socket.on("test") { (dataArray, socketAck) in
             //            var messageDictionary = [String: AnyObject]()
@@ -80,6 +84,5 @@ extension SecondViewController: UITableViewDataSource {
         
         return cell
     }
-    
     
 }

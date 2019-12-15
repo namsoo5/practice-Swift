@@ -21,9 +21,10 @@ class SocketIOManager: NSObject {
 //        }
     }
 
-    func establishConnection(room: String){
+    func establishConnection(room: String, completion: @escaping ()->Void){
         socket = self.manager.socket(forNamespace: "/"+room)
         socket.connect()
+        completion()
     }
     
     func closeConnection(){
