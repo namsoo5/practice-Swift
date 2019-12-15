@@ -16,14 +16,11 @@ class SocketIOManager: NSObject {
     override init() {
         super.init()
         socket = self.manager.defaultSocket
-        socket.on("test") { dataArray, ack in
-            print(dataArray)
-        }
+//        socket.on("test") { dataArray, ack in
+//            print(dataArray)
+//        }
     }
 
-    
-    
-    
     func establishConnection(room: String){
         socket = self.manager.socket(forNamespace: "/"+room)
         socket.connect()
@@ -45,23 +42,23 @@ class SocketIOManager: NSObject {
         
     }
     func sendMessage(message: String, withNickname nickname: String) {
-        socket.emit("event",  ["message" : "This is a test message"])
-        socket.emit("event1", [["name" : "ns"], ["email" : "@naver.com"]])
-        socket.emit("event2", ["name" : "ns", "email" : "@naver.com"])
-        socket.emit("msg", ["nick": nickname, "msg" : message])
+//        socket.emit("event",  ["message" : "This is a test message"])
+//        socket.emit("event1", [["name" : "ns"], ["email" : "@naver.com"]])
+//        socket.emit("event2", ["name" : "ns", "email" : "@naver.com"])
+//        socket.emit("msg", ["nick": nickname, "msg" : message])
+        socket.emit("test", ["message":"Hi Server"])
         
     }
     
-    func getChatMessage(completionHandler: ([String: AnyObject]) -> Void){
+//    func getChatMessage(completionHandler: ([String: AnyObject]) -> Void){
 //        socket.on("newChatMessage") { (dataArray, socketAck) in
 //            var messageDictionary = [String: AnyObject]()
-//            messageDictionary["nickname"] = dataArray[0] as! String
-//            messageDictionary["message"] = dataArray[1] as! String
-//            messageDictionary["date"] = dataArray[2] as! String
-//
-//            completionHandler(messageInfo: messageDictionary)
+//            messageDictionary["type"] = dataArray[0] as! String as AnyObject
+//            messageDictionary["message"] = dataArray[0] as! String as AnyObject
+//            
+//            completionHandler(messageDictionary)
 //        }
-    }
+//    }
     private func listenForOtherMessages() {
         socket.on("userConnectUpdate") { (dataArray, socketAck) -> Void in
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "userWasConnectedNotification"), object: dataArray[0] as! [String: AnyObject])
