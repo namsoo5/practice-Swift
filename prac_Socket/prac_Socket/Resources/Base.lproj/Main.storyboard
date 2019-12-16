@@ -92,7 +92,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Z3I-kE-L43">
-                                <rect key="frame" x="0.0" y="44" width="414" height="758"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="748"/>
                                 <color key="backgroundColor" red="0.81676918649999997" green="0.79096910129999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -157,7 +157,7 @@
                                 <rect key="frame" x="0.0" y="802" width="414" height="60"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hDM-zf-woD">
-                                        <rect key="frame" x="30" y="13" width="294" height="34"/>
+                                        <rect key="frame" x="30" y="13" width="304" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="RCn-h8-Gkt"/>
                                         </constraints>
@@ -184,9 +184,9 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="0.95397777288732399" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="jdS-3s-9bP" firstAttribute="leading" secondItem="hDM-zf-woD" secondAttribute="trailing" constant="30" id="7xs-3f-dS2"/>
+                                    <constraint firstItem="jdS-3s-9bP" firstAttribute="leading" secondItem="hDM-zf-woD" secondAttribute="trailing" constant="20" id="7xs-3f-dS2"/>
                                     <constraint firstItem="hDM-zf-woD" firstAttribute="centerY" secondItem="T10-uk-kTg" secondAttribute="centerY" id="9Ds-Lo-ObR"/>
                                     <constraint firstItem="hDM-zf-woD" firstAttribute="leading" secondItem="T10-uk-kTg" secondAttribute="leading" constant="30" id="9kh-Zg-m0B"/>
                                     <constraint firstItem="jdS-3s-9bP" firstAttribute="centerY" secondItem="hDM-zf-woD" secondAttribute="centerY" id="OL2-rY-Hnh"/>
@@ -195,12 +195,12 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.95397777289999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="T10-uk-kTg" firstAttribute="bottom" secondItem="FM7-Y6-eui" secondAttribute="bottom" id="7hK-ha-EzN"/>
                             <constraint firstItem="T10-uk-kTg" firstAttribute="trailing" secondItem="FM7-Y6-eui" secondAttribute="trailing" id="FZa-z6-nys"/>
                             <constraint firstItem="Z3I-kE-L43" firstAttribute="leading" secondItem="FM7-Y6-eui" secondAttribute="leading" id="PBR-Ng-Aa8"/>
-                            <constraint firstItem="T10-uk-kTg" firstAttribute="top" secondItem="Z3I-kE-L43" secondAttribute="bottom" id="RId-jD-oEf"/>
-                            <constraint firstItem="FM7-Y6-eui" firstAttribute="bottom" secondItem="T10-uk-kTg" secondAttribute="bottom" id="Xc1-xu-XF8"/>
+                            <constraint firstItem="T10-uk-kTg" firstAttribute="top" secondItem="Z3I-kE-L43" secondAttribute="bottom" constant="10" id="RId-jD-oEf"/>
                             <constraint firstItem="Z3I-kE-L43" firstAttribute="top" secondItem="FM7-Y6-eui" secondAttribute="top" id="h4g-Tq-Br3"/>
                             <constraint firstItem="T10-uk-kTg" firstAttribute="leading" secondItem="FM7-Y6-eui" secondAttribute="leading" id="ohJ-lj-nND"/>
                             <constraint firstItem="FM7-Y6-eui" firstAttribute="trailing" secondItem="Z3I-kE-L43" secondAttribute="trailing" id="uiu-3T-mkA"/>
@@ -208,6 +208,7 @@
                         <viewLayoutGuide key="safeArea" id="FM7-Y6-eui"/>
                     </view>
                     <connections>
+                        <outlet property="bottomView" destination="T10-uk-kTg" id="nsE-uv-GFj"/>
                         <outlet property="tableView" destination="Z3I-kE-L43" id="asc-uZ-8ZJ"/>
                         <outlet property="textField" destination="hDM-zf-woD" id="xKI-3n-EEw"/>
                     </connections>
