@@ -105,20 +105,22 @@ extension SecondViewController: UITableViewDataSource {
         if self.myChat[indexPath.row].type == 0 { //my Chat
             cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as? ChatTVC
             
-            // 말풍선 사이즈
-            let size = CGSize(width: 230, height: 1000)
+            // 말풍선 설정
+            let size = CGSize(width: cell.chatLabel.frame.width, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
             let estimatedFrame = NSString(string: msg).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)], context: nil)
-            view.frame = CGRect(x: self.view.frame.width - estimatedFrame.width - 40, y:cell.chatLabel.frame.origin.y , width: estimatedFrame.width+10, height: estimatedFrame.height + 10)
+            view.frame = CGRect(x: self.view.frame.width - estimatedFrame.width - 40 - 5, y:cell.chatLabel.frame.origin.y - 5 , width: estimatedFrame.width + 20, height: estimatedFrame.height + 10)
+            view.backgroundColor = UIColor(red: 255/255, green: 249/255, blue: 184/255, alpha: 1.0)
             
         }else { //otehr Chat
             cell = tableView.dequeueReusableCell(withIdentifier: "YourCell", for: indexPath) as? ChatTVC
             
-            // 말풍선 사이즈
-            let size = CGSize(width: 230, height: 1000)
+            // 말풍선 설정
+            let size = CGSize(width: cell.chatLabel.frame.width, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
             let estimatedFrame = NSString(string: msg).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)], context: nil)
-            view.frame = CGRect(x: cell.chatLabel.frame.origin.x-10, y:cell.chatLabel.frame.origin.y , width: estimatedFrame.width+10, height: estimatedFrame.height + 10)
+            view.frame = CGRect(x: cell.contentView.frame.origin.x + 30 , y:cell.chatLabel.frame.origin.y-5 , width: estimatedFrame.width + 20, height: estimatedFrame.height + 10)
+            view.backgroundColor = UIColor.white
         }
         
         cell.chatLabel.text = msg
@@ -139,7 +141,7 @@ extension SecondViewController: UITableViewDataSource {
         
         
         view.layer.cornerRadius = 7
-        view.backgroundColor = UIColor.white
+        
         cell.addSubview(view)
         // Label이 가려지지않도록 설정
         cell.sendSubviewToBack(view)
