@@ -11,8 +11,8 @@ import SocketIO
 
 class SocketIOManager: NSObject {
     static let shared = SocketIOManager()
-//    var manager = SocketManager(socketURL: URL(string: "http://localhost:9000")!, config: [.log(true), .compress])
-    var manager = SocketManager(socketURL: URL(string: "https://reactsocketiomo.herokuapp.com")!, config: [.log(true), .compress])
+    var manager = SocketManager(socketURL: URL(string: "http://localhost:9000")!, config: [.log(true), .compress])
+//    var manager = SocketManager(socketURL: URL(string: "https://reactsocketiomo.herokuapp.com")!, config: [.log(true), .compress])
     var socket: SocketIOClient!
     override init() {
         super.init()
@@ -49,7 +49,7 @@ class SocketIOManager: NSObject {
 //        socket.emit("event2", ["name" : "ns", "email" : "@naver.com"])
 //        socket.emit("msg", ["nick": nickname, "msg" : message])
 
-        //        socket.emit("test", ["message":"Hi Server"])
+        socket.emit("test", ["message":"Hi Server"])
         
         socket.emit("chat-msg", [
             "name": nickname,

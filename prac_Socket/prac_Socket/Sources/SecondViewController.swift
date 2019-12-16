@@ -27,14 +27,14 @@ class SecondViewController: UIViewController {
     }
     
     // 뒤로가기시 소켓종료
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         SocketIOManager.shared.closeConnection()
     }
     
     // 서버로부터 메시지 받을때 채팅창 업데이트
     func bindMsg() {
         self.socket.on("test") { (dataArray, socketAck) in
-            //            var messageDictionary = [String: AnyObject]()
+            
             var chat = chatType()
             print("***************************************")
             print(type(of: dataArray))
@@ -65,9 +65,9 @@ class SecondViewController: UIViewController {
                 section: 0
             )
             self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
-            
+            completion()
         }
-        completion()
+        
     }
     
     // 전송버튼
@@ -99,26 +99,45 @@ extension SecondViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell: ChatTVC!
+        let view = UIView()
+        let msg = self.myChat[indexPath.row].message
+        
         if self.myChat[indexPath.row].type == 0 { //my Chat
             cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as? ChatTVC
+            
+            // 말풍선 사이즈
+            let size = CGSize(width: 230, height: 1000)
+            let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+            let estimatedFrame = NSString(string: msg).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)], context: nil)
+            view.frame = CGRect(x: self.view.frame.width - estimatedFrame.width - 40, y:cell.chatLabel.frame.origin.y , width: estimatedFrame.width+10, height: estimatedFrame.height + 10)
+            
         }else { //otehr Chat
             cell = tableView.dequeueReusableCell(withIdentifier: "YourCell", for: indexPath) as? ChatTVC
+            
+            // 말풍선 사이즈
+            let size = CGSize(width: 230, height: 1000)
+            let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+            let estimatedFrame = NSString(string: msg).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)], context: nil)
+            view.frame = CGRect(x: cell.chatLabel.frame.origin.x-10, y:cell.chatLabel.frame.origin.y , width: estimatedFrame.width+10, height: estimatedFrame.height + 10)
         }
         
-        cell.chatLabel.text = self.myChat[indexPath.row].message
+        cell.chatLabel.text = msg
         
         // 말풍선 구현
-        let view = UIView()
-        
-        // 글자수에 비례한 넓이
-        var width: CGFloat = CGFloat((cell.chatLabel.text?.count ?? 1) * 11 + 20)
-        if width > 250 {
-            width = 250
-        }
-        let height = cell.contentView.frame.height
         
         
-        view.frame.size = CGSize(width: width, height: height)
+        // 글자수에 비례한 넓이 cell.chatLabel.text?.lengthOfBytes(using: .utf8) ?? 1
+        //        let byteLength = cell.chatLabel.text?.count ?? 1
+        
+        //        var width = CGFloat(byteLength * 16)
+        //
+        //        if width > 250 {
+        //            width = 250
+        //        }
+        
+        //        let height = cell.contentView.frame.height
+        
+        
         view.layer.cornerRadius = 7
         view.backgroundColor = UIColor.white
         cell.addSubview(view)
@@ -126,19 +145,19 @@ extension SecondViewController: UITableViewDataSource {
         cell.sendSubviewToBack(view)
         
         // 말풍선 오토레이아웃
-        if self.myChat[indexPath.row].type == 0 {
-            view.translatesAutoresizingMaskIntoConstraints = false
-            view.trailingAnchor.constraint(equalTo: cell.chatLabel.trailingAnchor, constant: 10).isActive = true
-            view.topAnchor.constraint(equalTo: cell.chatLabel.topAnchor).isActive = true
-            view.bottomAnchor.constraint(equalTo: cell.chatLabel.bottomAnchor).isActive = true
-            view.widthAnchor.constraint(equalToConstant: width).isActive = true
-        }else {
-            view.translatesAutoresizingMaskIntoConstraints = false
-            view.leadingAnchor.constraint(equalTo: cell.chatLabel.leadingAnchor, constant: -10).isActive = true
-            view.topAnchor.constraint(equalTo: cell.chatLabel.topAnchor).isActive = true
-            view.bottomAnchor.constraint(equalTo: cell.chatLabel.bottomAnchor).isActive = true
-            view.widthAnchor.constraint(equalToConstant: width).isActive = true
-        }
+        //        if self.myChat[indexPath.row].type == 0 {
+        //            view.translatesAutoresizingMaskIntoConstraints = false
+        //            view.trailingAnchor.constraint(equalTo: cell.chatLabel.trailingAnchor, constant: 10).isActive = true
+        //            view.topAnchor.constraint(equalTo: cell.chatLabel.topAnchor).isActive = true
+        //            view.bottomAnchor.constraint(equalTo: cell.chatLabel.bottomAnchor).isActive = true
+        //            view.widthAnchor.constraint(equalToConstant: width).isActive = true
+        //        }else {
+        //            view.translatesAutoresizingMaskIntoConstraints = false
+        //            view.leadingAnchor.constraint(equalTo: cell.chatLabel.leadingAnchor, constant: -10).isActive = true
+        //            view.topAnchor.constraint(equalTo: cell.chatLabel.topAnchor).isActive = true
+        //            view.bottomAnchor.constraint(equalTo: cell.chatLabel.bottomAnchor).isActive = true
+        //            view.widthAnchor.constraint(equalToConstant: width).isActive = true
+        //        }
         
         return cell
     }
