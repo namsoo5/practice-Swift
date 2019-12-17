@@ -4,7 +4,7 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
 const room = io.of('/test');
-const aroom = io.of('/a');
+// const aroo m = io.of('/a');
 const broom = io.of('/b');
 const croom = io.of('/c');
 
@@ -71,16 +71,34 @@ http.listen(9000, function () {
 
 });
 
+broom.on('connection', (clientSocket) => {
+  console.log('*** b connected ***');
+
+  clientSocket.on('disconnect', function () {
+    clientSocket.disconnect();
+    console.log('b disconnected');
+  })
+})
+
+croom.on('connection', (clientSocket) => {
+  console.log('*** c connected ***');
+
+  clientSocket.on('disconnect', function () {
+    clientSocket.disconnect();
+    console.log('c disconnected');
+  })
+})
+
 room.on('connection', (clientSocket) => {
-  console.log('a user connected');
+  console.log('*** test connected ***');
 
   console.log(clientSocket.id)
 
   //echo
   //user = 0, other = 1
   clientSocket.on('test', (msg) => {
-    console.log(msg["message"])
-    clientSocket.emit('test', { 
+    console.log(msg)
+    room.emit('test', { 
       'type' : 1,
      'message' : msg })
   })
@@ -113,7 +131,8 @@ room.on('connection', (clientSocket) => {
   })
 
   clientSocket.on('disconnect', function () {
-    console.log('user disconnected');
+    clientSocket.disconnect();
+    console.log('test disconnected');
   })
 
   // clientSocket.on('')
