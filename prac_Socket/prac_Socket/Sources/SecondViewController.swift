@@ -25,7 +25,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-//        self.tableView.rowHeight = UITableView.automaticDimension
         
         initGestureRecognizer()
         registerForKeyboardNotifications()
@@ -35,6 +34,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     // 뒤로가기시 소켓종료
     override func viewWillDisappear(_ animated: Bool) {
         SocketIOManager.shared.closeConnection()
+        unregisterForKeyboardNotifications()
     }
     
     // 서버로부터 메시지 받을때 채팅창 업데이트
@@ -83,7 +83,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         self.updateChat(count: self.myChat.count) {
             print("Send Message")
         }
-        
     }
     
 }
@@ -97,14 +96,14 @@ extension SecondViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let chat = myChat[indexPath.row]
 
-        //좌우마진 32, 20이 최대값이므로 최댓값 가로길이는 아래와같음
-        let widthOfText = view.frame.width - 32 - 20
+        //좌우마진 122, 40이 최대값이므로 최댓값 가로길이는 아래와같음
+        let widthOfText = view.frame.width - 122 - 40
         let size = CGSize(width: widthOfText, height: 1000)
         let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)]
         let estimatedFrame = NSString(string: chat.message).boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
 
-        // 위아래마진 6 + 여유공간 4
-        return estimatedFrame.height + 6 + 4 + 20
+        // 위아래마진 14,14 + 여유공간 4
+        return estimatedFrame.height + 14 + 14 + 4
     }
 }
  
@@ -122,66 +121,15 @@ extension SecondViewController: UITableViewDataSource {
         cell.chatLabel.text = self.myChat[indexPath.row].message
         return cell
         
-        /*
-         ********************
-            코드로 말풍선만들기
-         ********************
-         
-         var cell: ChatTVC!
-         
-         if self.myChat[indexPath.row].type == 0 { //my Chat
-         
-         cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as? ChatTVC
-         cell.msg = myChat[indexPath.row].message
-         let size = CGSize(width: cell.chatLabel.frame.width, height: 1000)
-         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-         
-         // 말풍선 설정
-         cell.estimatedFrame = NSString(string: cell.msg).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)], context: nil)
-         
-         cell.bubbleView.frame = CGRect(x: self.view.frame.width - cell.estimatedFrame.width - 40 - 5, y:cell.chatLabel.frame.origin.y - 5 , width: cell.estimatedFrame.width + 20, height: cell.estimatedFrame.height + 10)
-         cell.bubbleView.backgroundColor = UIColor(red: 255/255, green: 249/255, blue: 184/255, alpha: 1.0)
-         
-         }else { //otehr Chat
-         cell = tableView.dequeueReusableCell(withIdentifier: "YourCell", for: indexPath) as? ChatTVC
-         cell.msg = myChat[indexPath.row].message
-         let size = CGSize(width: cell.chatLabel.frame.width, height: 1000)
-         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-         
-         // 말풍선 설정
-         cell.estimatedFrame = NSString(string: cell.msg).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)], context: nil)
-         cell.bubbleView.frame = CGRect(x: cell.frame.origin.x + 30 , y:cell.chatLabel.frame.origin.y-5 , width: cell.estimatedFrame.width + 20, height: cell.estimatedFrame.height + 10)
-         cell.bubbleView.backgroundColor = UIColor.white
-         }
-         
-         cell.bubbleView.layer.cornerRadius = 7
-         // Label이 가려지지않도록 설정
-         cell.sendSubviewToBack(cell.bubbleView)
-         
-         return cell
-         */
     }
-    
     
 }
 
 extension SecondViewController {
-    
-    //MARK: - 키보드 내리기
-    //TextField를 터치했는지 판별
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        if touch.view?.isDescendant(of: textField) ?? false {
-            //터치된 뷰가 TextField면 터치를 안한것처럼 이벤트를 주지않고 키보드가 꺼지지 않도록
-            return false
-        }
-        
-        return true
-    }
-    
+
     //GestureRecognizer 생성
     func initGestureRecognizer() {
         let textFieldTap = UITapGestureRecognizer(target: self, action: #selector(handleTapTextField(_:)))
-//        textFieldTap.delegate = self
         view.addGestureRecognizer(textFieldTap)
     }
     
@@ -190,7 +138,7 @@ extension SecondViewController {
         self.view.endEditing(true)
     }
     
-    //MARK: - 키보드에 따른 뷰의 이동
+
     // observer생성
     func registerForKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -250,7 +198,6 @@ extension SecondViewController {
         UIView.animate(withDuration: duration, delay: 0.0, options: .init(rawValue: curve), animations: {
             self.view.layoutIfNeeded()
         })
-        
         
     }
     
