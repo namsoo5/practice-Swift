@@ -208,7 +208,9 @@
                         <viewLayoutGuide key="safeArea" id="FM7-Y6-eui"/>
                     </view>
                     <connections>
+                        <outlet property="botViewLayout" destination="7hK-ha-EzN" id="Ex0-k5-Xz9"/>
                         <outlet property="bottomView" destination="T10-uk-kTg" id="nsE-uv-GFj"/>
+                        <outlet property="tableBotLayout" destination="RId-jD-oEf" id="fn7-0L-avh"/>
                         <outlet property="tableView" destination="Z3I-kE-L43" id="asc-uZ-8ZJ"/>
                         <outlet property="textField" destination="hDM-zf-woD" id="xKI-3n-EEw"/>
                     </connections>

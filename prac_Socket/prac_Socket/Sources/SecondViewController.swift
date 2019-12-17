@@ -11,6 +11,9 @@ import SocketIO
 class SecondViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tableView: UITableView!
     
+    
+    @IBOutlet weak var botViewLayout: NSLayoutConstraint!
+    @IBOutlet weak var tableBotLayout: NSLayoutConstraint!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var textField: UITextField!
     var myChat: [chatType] = []
@@ -18,6 +21,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
     //키보드 높이를 저장할 변수
     var keyboardHeight: CGFloat!
+    var originHeight: CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +33,8 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         
         initGestureRecognizer()
         registerForKeyboardNotifications()
-
-        
+        originHeight = botViewLayout.constant
+         
     }
     
     // 뒤로가기시 소켓종료
@@ -96,6 +100,11 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 struct chatType {
     var type = -1
     var message = ""
+    var estimatedFrame: CGRect! {
+        let size = CGSize(width: 225, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        return NSString(string: message).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)], context: nil)
+    }
 }
 
 extension SecondViewController: UITableViewDataSource {
@@ -107,39 +116,36 @@ extension SecondViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell: ChatTVC!
-        let view = UIView()
-        let msg = self.myChat[indexPath.row].message
-        
-
         
         if self.myChat[indexPath.row].type == 0 { //my Chat
+           
             cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as? ChatTVC
+            cell.msg = myChat[indexPath.row].message
             let size = CGSize(width: cell.chatLabel.frame.width, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
             
             // 말풍선 설정
-            let estimatedFrame = NSString(string: msg).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)], context: nil)
-            view.frame = CGRect(x: self.view.frame.width - estimatedFrame.width - 40 - 5, y:cell.chatLabel.frame.origin.y - 5 , width: estimatedFrame.width + 20, height: estimatedFrame.height + 10)
-            view.backgroundColor = UIColor(red: 255/255, green: 249/255, blue: 184/255, alpha: 1.0)
+            cell.estimatedFrame = NSString(string: cell.msg).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)], context: nil)
+            
+            cell.bubbleView.frame = CGRect(x: self.view.frame.width - cell.estimatedFrame.width - 40 - 5, y:cell.chatLabel.frame.origin.y - 5 , width: cell.estimatedFrame.width + 20, height: cell.estimatedFrame.height + 10)
+            cell.bubbleView.backgroundColor = UIColor(red: 255/255, green: 249/255, blue: 184/255, alpha: 1.0)
             
         }else { //otehr Chat
             cell = tableView.dequeueReusableCell(withIdentifier: "YourCell", for: indexPath) as? ChatTVC
+            cell.msg = myChat[indexPath.row].message
             let size = CGSize(width: cell.chatLabel.frame.width, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-            
+
             // 말풍선 설정
-            let estimatedFrame = NSString(string: msg).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)], context: nil)
-            view.frame = CGRect(x: cell.frame.origin.x + 30 , y:cell.chatLabel.frame.origin.y-5 , width: estimatedFrame.width + 20, height: estimatedFrame.height + 10)
-            view.backgroundColor = UIColor.white
+            cell.estimatedFrame = NSString(string: cell.msg).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)], context: nil)
+            cell.bubbleView.frame = CGRect(x: cell.frame.origin.x + 30 , y:cell.chatLabel.frame.origin.y-5 , width: cell.estimatedFrame.width + 20, height: cell.estimatedFrame.height + 10)
+            cell.bubbleView.backgroundColor = UIColor.white
         }
-        
-        cell.chatLabel.text = msg
-        view.layer.cornerRadius = 7
-        
-        cell.addSubview(view)
+      
+        cell.bubbleView.layer.cornerRadius = 7
         // Label이 가려지지않도록 설정
-        cell.sendSubviewToBack(view)
-    
+        cell.sendSubviewToBack(cell.bubbleView)
+        
         return cell
     }
     
@@ -186,7 +192,7 @@ extension SecondViewController: UIGestureRecognizerDelegate{
     
     // keyboard가 보여질 때 어떤 동작을 수행
     @objc func keyboardWillShow(_ notification: NSNotification) {
-        
+    
         //키보드의 동작시간 얻기
         guard let duration = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else { return }
         
@@ -206,8 +212,9 @@ extension SecondViewController: UIGestureRecognizerDelegate{
         // animation 함수
         UIView.animate(withDuration: duration, delay: 0.0, options: .init(rawValue: curve), animations: {
         
-            self.bottomView.transform = CGAffineTransform(translationX: 0, y: -self.keyboardHeight)
-
+//            self.bottomView.transform = CGAffineTransform(translationX: 0, y: -self.keyboardHeight)
+            self.botViewLayout.constant = self.originHeight - self.keyboardHeight
+            
         })
         
         self.view.layoutIfNeeded()
@@ -220,8 +227,8 @@ extension SecondViewController: UIGestureRecognizerDelegate{
         UIView.animate(withDuration: duration, delay: 0.0, options: .init(rawValue: curve), animations: {
             
             // 원래대로 돌아가도록
-            self.bottomView.transform = .identity
-            
+//            self.bottomView.transform = .identity
+           self.botViewLayout.constant = self.originHeight
 
         })
         
