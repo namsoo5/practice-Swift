@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     let cellSize = CGSize(width: 200, height: 500)
-    var minItemSpacing: CGFloat = 20
+    var minItemSpacing: CGFloat = -80
     let cellCount = 8
     var previousIndex = 0
     
@@ -89,12 +89,16 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDe
     }
     
      func animateZoomforCell(zoomCell: UICollectionViewCell) {
+        var anim = CATransform3DTranslate(CATransform3DIdentity, 0, 0, 0.1)
+        anim = CATransform3DRotate(anim, 0.5, 0, 0, 1)
         UIView.animate(
             withDuration: 0.2,
             delay: 0,
             options: .curveEaseOut,
             animations: {
-                zoomCell.transform = .identity
+//                zoomCell.transform = .identity
+                zoomCell.transform3D = anim
+
         },
             completion: nil)
     }
@@ -105,9 +109,11 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDe
             delay: 0,
             options: .curveEaseOut,
             animations: {
-                zoomCell.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+//                zoomCell.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+                zoomCell.transform3D = CATransform3DScale(CATransform3DIdentity, 0.5, 0.5, 1)
         },
             completion: nil)
         
     }
+    
 }
