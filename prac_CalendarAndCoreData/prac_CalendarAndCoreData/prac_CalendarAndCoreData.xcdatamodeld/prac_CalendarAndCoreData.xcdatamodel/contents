@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DayRootine" representedClassName="DayRootine" syncable="YES">
+        <attribute name="day" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rootine" optional="YES" attributeType="Transformable" customClassName="[Rootine]"/>
+    </entity>
+    <entity name="Rootine" representedClassName="Rootine" syncable="YES">
+        <attribute name="imoji" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="Rootine" positionX="104.91015625" positionY="113.37890625" width="128" height="73"/>
+        <element name="DayRootine" positionX="-58.19921875" positionY="102.0859375" width="128" height="73"/>
+    </elements>
+</model>
