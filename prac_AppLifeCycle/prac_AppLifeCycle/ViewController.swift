@@ -17,20 +17,25 @@ class ViewController: UIViewController {
 //    }
     
     override func viewWillAppear(_ animated: Bool) {  //view가 바뀔때마다 호출
-        print("willappear")
+//        print(#function)
+//        print("willappear")
     }
     override func viewDidAppear(_ animated: Bool) {
-    print("didappear")
+//        print(#function)
+//    print("didappear")
     }
     override func viewWillDisappear(_ animated: Bool) {  //사라질거다
-        print("willdisappear")
+//        print(#function)
+//        print("willdisappear")
     }
     override func viewDidDisappear(_ animated: Bool) {   //사라졌다
-        print("diddisappear")
+//        print(#function)
+//        print("diddisappear")
     }
     override func viewDidLoad() {   //메모리에 추가됬을때
         super.viewDidLoad()
-        print("viewdidload")
+//        print(#function)
+//        print("viewdidload")
         // Do any additional setup after loading the view, typically from a nib.
     }
 
