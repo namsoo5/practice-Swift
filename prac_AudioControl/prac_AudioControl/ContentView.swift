@@ -47,7 +47,7 @@ struct ContentView: View {
     }
     
     func setAudio() {
-        if let url = Bundle.main.url(forResource: "sample", withExtension: ".mp3") {
+        if let url = Bundle.main.url(forResource: "Idiotape", withExtension: ".mp3") {
             viewModel.addAudio(url)
         }
     }
