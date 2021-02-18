@@ -102,7 +102,7 @@ class AudioViewModel: NSObject, ObservableObject {
         }
     }
     
-    // 기존 음성파일불러오기
+    // 기존 음성파일불러오기 ✅
     func setEffectFile() {
         do {
             audioFile = try AVAudioFile(forReading: recorder.url)
@@ -115,8 +115,7 @@ class AudioViewModel: NSObject, ObservableObject {
         }
     }
     
-    //rate: Float, itch: Float, echo: Bool, reverb: Bool
-    // MARK: - 녹음된파일 변조시키기
+    // MARK: - 녹음된파일 변조시키기 ✅
     
     func recordEffect() {
         engine.stop()
