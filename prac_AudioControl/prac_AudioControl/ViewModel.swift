@@ -15,7 +15,7 @@ class AudioViewModel: NSObject, ObservableObject {
     private var player: AVAudioPlayer?
     
     // MARK: - record properties
-    private var playerNode = AVAudioPlayerNode()
+    private var playerNode: AVAudioPlayerNode! // engine용 player
     private var engine = AVAudioEngine() // 효과
     private var audioFile: AVAudioFile? // 음원파일
     private var buffer: AVAudioPCMBuffer! // 버퍼
@@ -102,13 +102,14 @@ class AudioViewModel: NSObject, ObservableObject {
         }
     }
     
-    // 기존 음성파일에 이팩트추가하기
+    // 기존 음성파일불러오기
     func setEffectFile() {
         do {
             audioFile = try AVAudioFile(forReading: recorder.url)
+            playerNode = AVAudioPlayerNode()
             buffer = AVAudioPCMBuffer(pcmFormat: audioFile!.processingFormat,
                                       frameCapacity: AVAudioFrameCount(audioFile!.length))
-            
+            recordEffect()
         } catch(let error) {
             print(error)
         }
@@ -118,31 +119,39 @@ class AudioViewModel: NSObject, ObservableObject {
     // MARK: - 녹음된파일 변조시키기
     
     func recordEffect() {
+        engine.stop()
+        playerNode.stop()
+        
         let unitTimePitch = AVAudioUnitTimePitch()
         unitTimePitch.pitch = 1200
         
         let unitEcho = AVAudioUnitDistortion()
-        unitEcho.loadFactoryPreset(.multiEcho1)
+        unitEcho.loadFactoryPreset(.multiEcho2)
         
         let unitReverb = AVAudioUnitReverb()
         unitReverb.loadFactoryPreset(.largeHall)
         
+        // 재생될 노드 엔진에 추가
         engine.attach(playerNode)
         engine.attach(unitTimePitch)
         engine.attach(unitEcho)
         engine.attach(unitReverb)
         
-        engine.connect(playerNode, to: engine.mainMixerNode, format: buffer!.format)
+        // 노드 연결하기
+        engine.connect(playerNode, to: unitEcho, format: buffer!.format)
+        engine.connect(unitEcho, to: unitTimePitch, format: buffer!.format)
+        engine.connect(unitTimePitch, to: unitReverb, format: buffer!.format)
+        engine.connect(unitReverb, to: engine.mainMixerNode, format: buffer!.format)
         
-        playerNode.stop()
+        
         if let audioFile = audioFile {
-            playerNode.scheduleFile(audioFile, at: nil) {
-                print("scheduleFile")
-            }
-        }
+            // 후처리된 음성 준비작업
+            playerNode.scheduleFile(audioFile, at: nil)
             
-        try? engine.start()
-        playerNode.play()
+            // 시작
+            try? engine.start()
+            playerNode.play()
+        }
     }
 }
 
@@ -151,6 +160,7 @@ extension AudioViewModel: AVAudioRecorderDelegate {
         if flag {
             print("녹음완료")
             print(recorder.url)
+            setEffectFile()
         } else {
             print("녹음실패")
         }
