@@ -109,6 +109,7 @@ class AudioViewModel: NSObject, ObservableObject {
             playerNode = AVAudioPlayerNode()
             buffer = AVAudioPCMBuffer(pcmFormat: audioFile!.processingFormat,
                                       frameCapacity: AVAudioFrameCount(audioFile!.length))
+            try audioFile?.read(into: buffer)
             recordEffect()
         } catch(let error) {
             print(error)
@@ -145,7 +146,8 @@ class AudioViewModel: NSObject, ObservableObject {
         
         if let audioFile = audioFile {
             // 후처리된 음성 준비작업
-            playerNode.scheduleFile(audioFile, at: nil)
+            playerNode.scheduleBuffer(buffer)
+//            playerNode.scheduleFile(audioFile, at: nil)
             
             // 시작
             try? engine.start()
