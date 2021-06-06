@@ -1,0 +1,16 @@
+PODS:
+  - NSViewAnim (1.0.1)
+
+DEPENDENCIES:
+  - NSViewAnim
+
+SPEC REPOS:
+  trunk:
+    - NSViewAnim
+
+SPEC CHECKSUMS:
+  NSViewAnim: e73c52c23bb9f4d8b4f00d651fe74932c7da32f4
+
+PODFILE CHECKSUM: f36df2d07c43dea4d44bbd7df1ca0d3bcbf43cc5
+
+COCOAPODS: 1.8.4

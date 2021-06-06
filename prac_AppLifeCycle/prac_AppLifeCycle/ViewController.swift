@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 //        print(#function)
 //        print("viewdidload")
-        // Do any additional setup after loading the view, typically from a nib.
+        // Do any additional setup after loading the view, typically from a nib.        
     }
 
 

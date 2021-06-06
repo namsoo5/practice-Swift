@@ -22,11 +22,9 @@ class ViewController: UIViewController {
         
         setupMonth()
         collectionView.dataSource = self
-        
     }
     
     func setupMonth() {
-        
         emptyDayCount = Date.startWeekday(year: "2020", month: "07")-1
         
         count = calendar.getDayOfMonth() + emptyDayCount

@@ -13,9 +13,14 @@ class CalendarCalculate {
     var month: Int {
         didSet {
             dayOfMonth = getDayOfMonth()
+            print(month)
         }
     }
-    var year: Int
+    var year: Int {
+        didSet {
+            print(year)
+        }
+    }
     
     init() {
         year = Date().getYear()
