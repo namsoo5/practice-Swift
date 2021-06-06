@@ -11,6 +11,7 @@ import AuthenticationServices
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var testView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +53,6 @@ extension ViewController:
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             
@@ -60,15 +60,26 @@ extension ViewController:
             let userIdentifier = appleIDCredential.user
             let fullName = appleIDCredential.fullName
             let email = appleIDCredential.email
-            let token = appleIDCredential.identityToken
-            let authCode = appleIDCredential.authorizationCode
-            
-            print("useridentifier: \(userIdentifier)")
-            print("fullName: \(fullName)")
-            print("email: \(email)")
-            print("token: \(token)")
-            print("authCode: \(authCode)")
-            
+            if let token = appleIDCredential.identityToken,
+                let authCode = appleIDCredential.authorizationCode,
+                let authString = String(data: authCode, encoding: .utf8),
+                let tokenString = String(data: token, encoding: .utf8) {
+                
+                print("authString: \(authString)")
+                print("tokenString: \(tokenString)")
+                print("useridentifier: \(userIdentifier)")
+                print("fullName: \(fullName)")
+                print("email: \(email)")
+                print("token: \(token)")
+                print("authCode: \(authCode)")
+                
+                textView.text = """
+                -- client_secret(identityToken) --\n\(tokenString)
+                -- code(authorizationCode) --\n\(authString)
+                -- useridentifier(sub) --\n\(userIdentifier)
+                """
+                
+            }
         case let passwordCredential as ASPasswordCredential:
             // Sign in using an existing iCloud Keychain credential.
             let username = passwordCredential.user
