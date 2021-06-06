@@ -52,7 +52,13 @@ class ViewController: UIViewController {
         let chartData = PieChartData(dataSet: chartDataSet)
         // 차트안의 데이터 값색
         chartData.setValueTextColor(.cyan)
-        
         pieChartView.data = chartData
+//        pieChartView.animate(yAxisDuration: 1, easingOption: .easeOutSine)
+    }
+    
+    @IBAction func addDataClick(_ sender: Any) {
+        aDateEntry.value += 1
+
+        updateCharts()
     }
 }
